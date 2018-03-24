@@ -10,8 +10,7 @@ var express = require("express"),
   session = require("express-session"),
   passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy,
-  request = require("request"),
-  $ = require("jquery");
+  request = require("request");
 // connect to db models
 var db = require("./models"),
   Game = db.Game,

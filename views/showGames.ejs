@@ -29,10 +29,12 @@
                      <li><a href="#footer">Contact</a></li>
                      <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
                      <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
-                     <div>
-                        <div>Welcome, <%= user.firstname %>!</div>
-                        <a href="/logout">Log out</a>
-                     </div>
+                     <% if (!!user){ %>
+                       <div>
+                          <div>Welcome, <%= user.firstname %>!</div>
+                          <a href="/logout">Log out</a>
+                       </div>
+                     <%}%>
                   </ul>
                </nav>
                <button class="navbar-toggle">

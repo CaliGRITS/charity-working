@@ -23,7 +23,7 @@
             <div class="header-navbar col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
                <nav class="navigation">
                   <ul class="list-inline text-center custom-list">
-                     <a href="index.html" id="logo-index"><img src="images/header-banner.png" alt=""></a>
+                     <a href="/" id="logo-index"><img src="images/header-banner.png" alt=""></a>
                      <!-- <li><a href="#">Home</a></li> -->
                      <li><a href="#about">About</a></li>
                      <li><a href="#schedule">Schedule</a></li>
@@ -35,11 +35,13 @@
                      <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
                      <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
                      <div>
-                        <div style="display: none;">Welcome, <%= user.username %>!</div>
                         <div>Welcome, <%= user.firstname %>!</div>
                         <a href="/logout">Log out</a>
+                        <% if(user && user.admin) { %>
+                            <a href="/admin">Admin Portal</a>
                         <% } %>
-                     </div>
+                    </div>
+                    <% } %>
                      <hr>
                      <!-- <a href="/signup"><span>Sign up/Log in</span></a> -->
                   </ul>

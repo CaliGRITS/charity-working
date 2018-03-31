@@ -124,7 +124,7 @@ app.post("/confirmBet", function(req, res) {
     team: req.body.team,
     charity: req.body.charity,
     amount: req.body.amount,
-    username: req.body.username,
+    username: req.user.username,
     gameId: req.body.gameId
   });
 
@@ -161,6 +161,30 @@ app.get("/games/:id", function(req, res) {
       res.render("games/show", { game: foundGame });
     }
   });
+});
+
+app.delete("/bets/:id", function(req, res) {
+  console.log(req.params.id)
+  Bet.findByIdAndRemove(req.params.id, function(err, bet){
+    if(err) return res.sendStatus(500);
+    res.sendStatus(200);
+  })
+});
+// app.update("/amount", function(req, res) {
+//   console.log(req.params.id)
+//   Amount.findByIdAndUpdate(req.params.id, function(err, amount){
+//     if(err) return res.sendStatus(500);
+//     res.sendStatus(200);
+//   })
+// });
+
+app.get("/showbets", function(req, res) {
+    var foundBet = Bet.find({username: req.user.username}, function(err, foundBet){
+      console.log(foundBet);
+      res.render("showBets", {username: req.user.username, bets: foundBet});
+    });
+
+
 });
 //
 // app.get("/allGames", function(req, res) {
@@ -234,7 +258,7 @@ fetch(url)
 
 // show signup view
 app.get('/signup', function (req, res) {
- res.render('signup');
+ res.sendFile(__dirname+'/views/signup.html');
 });
 
 // Signing up new user, log them in
@@ -260,7 +284,7 @@ app.post('/signup', function (req, res) {
 
 // log in user
 app.get('/login', function (req, res) {
- res.render('login');
+  res.sendFile(__dirname+'/views/signup.html');
 });
 
 app.post('/login', passport.authenticate('local'), function (req, res) {

@@ -50,6 +50,7 @@ var games_list = [
     gameHomeTeam: "Purdue"
   }
 ];
+db.User.findByIdAndUpdate("5ab870753d7df34c0353d81b",{"admin": true});
 
 // for (var i= 0; i < 5; i++) {
 //     db.Game.create({

@@ -17,20 +17,24 @@
 <tr>
   <th>Team</th>
   <th>Charity</th>
+  <th>Status </th>
   <th>Amount</th>
+
 </tr>
 
 <% for(bet of bets) { %>
   <tr>
     <td><%= bet.team %></td>
     <td><%= bet.charity %></td>
-    <td><%= bet.won %></td>
+  <td><%= bet.closed ? bet.won ? 'you won' : 'sory bro' : 'not decided yet'%></td>
+    <% if(!bet.closed){ %>
     <td>
       <input type="text" name="" placeholder="<%= bet.amount %>">
 
     </td>
     <td><a class="delete" href="javascript:void(0);" data-id="<%= bet.id %>">Delete Bet</a></td>
   </tr>
+  <% } %>
 <% } %>
 </table>
 

@@ -71,9 +71,11 @@ db.Game.remove({}, function(err){
     db.Game.create(games_list, function(err, games){
       if (err) { return console.log('err', err); }
       console.log("created", games.length, "games");
-      process.exit();
     });
   }
+});
+db.Bet.remove({},function(err,removed){
+  console.log(removed)
 });
 
 // db.Game.create({

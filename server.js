@@ -82,7 +82,7 @@ app.get("/showGames", function(req, res) {
   // res.render("index", { games: allGames});
     if (!req.user)
     res.redirect("/login")
-  Game.find(function(err, allGames) {
+  Game.find({closed:false},function(err, allGames) {
     if (err) { res.status(500).json({ error: err.message });}
 
       //show games of logged in user
@@ -190,7 +190,7 @@ app.get("/showbets", function(req, res) {
 // ~~~~~~Admin show all games ~~~~~~~ //
 
 app.get("/admin/showGames", function (req, res) {
-    Game.find(function(err, allgames)
+    Game.find({closed:false},function(err, allgames)
      {res.render ('admin', {games: allgames, user: req.user})
     })
 });
@@ -198,15 +198,26 @@ app.get("/admin/showGames", function (req, res) {
 // ~~~~~Admin notify bet winner~~~~~~ //
 
 app.post("/admin", function (req, res) {
-    Bet.find({gameId:req.body.game}, function(err, bets){
-    bets.forEach(function(index, bet){
+  console.log(req.body);
+    Game.findById(req.body.gameId,function(err,found){
+      found.closed=true;
+      found.save();
+
+    })
+    Bet.find({gameId:req.body.gameId}, function(err, bets){
+
+    bets.forEach(function(bet, index){
+
       if(bet.team == req.body.team) {
         bet.won = true
       }
-      bet.close = true
-      bet.save ();
+      bet.closed = true
+      bet.save (function(err,saved){
+
+      });
     })
   })
+  res.redirect('/admin/showGames');
 });
 
 // ~~~~~~API Call~~~~~ //
@@ -255,7 +266,7 @@ fetch(url)
 //// Auth - Login/Signup Routes ////
 // show signup view
 app.get('/signup', function (req, res) {
- res.sendFile(__dirname+'/views/signup.html');
+ res.render('signup');
 });
 
 // Signing up new user, log them in
@@ -281,8 +292,7 @@ app.post('/signup', function (req, res) {
 
 // log in user
 app.get('/login', function (req, res) {
-  res.sendFile(__dirname+'/views/signup.html');
-});
+res.render('signup');});
 
 // app.get('/admin', function (req, res) {
 //   res.sendFile(__dirname+'/views/signup.html');

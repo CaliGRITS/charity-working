@@ -20,20 +20,20 @@
          <header id="header" class="fourth-version">
             <div class="container">
             </div>
-            <div class="header-navbar col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+            <!-- <div class="header-navbar col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix"> -->
                <nav class="navigation">
                   <ul class="list-inline text-center custom-list">
-                     <a href="/" id="logo-index"><img src="images/header-banner.png" alt=""></a>
+                     <a href="/showGames"><img src="images/header-banner.png" alt=""></a>
                      <!-- <li><a href="#">Home</a></li> -->
                      <li><a href="#about">About</a></li>
-                     <li><a href="#schedule">Schedule</a></li>
+                     <li><a href="/showbets">Show Bets</a></li>
                      <li><a href="#footer">Contact</a></li>
                      <% if(!user) { %>
                      <a href="/signup">Log in/Sign up</a>
                      <% } else { %>
                      <li><a href="/showGames">Games</a></li>
-                     <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
-                     <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+                     <!-- <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
+                     <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li> -->
                      <div>
                         <div>Welcome, <%= user.firstname %>!</div>
                         <a href="/logout">Log out</a>
@@ -94,31 +94,26 @@
          </div>
       </div>
       <!-- End Intro -->
+      <div class="call-outs-container">
+        <div class="call-out">
+          <h2>1.</h2>
+          <h4>Pick the team you think will win.</h4>
+        </div>
+
+        <div class="call-out">
+          <h2>2.</h2>
+          <h4>Pick the charity that you want to donate to.</h4>
+        </div>
+
+        <div class="call-out">
+          <h2>3.</h2>
+          <h4>Place your bet, pay for it and let's see your charity win!</h4>
+        </div>
+      </div>
+
+<hr>
       <!-- Start About -->
       <div id="about" class="about">
-         <!-- Start Container -->
-         <div class="container">
-            <!-- Start About -->
-            <div class="about-process">
-               <i class="fa fa-basketball-ball"></i>
-               <h1>Pick a team</h1>
-            </div>
-            <div class="about-process">
-               <i class="fa fa-dollar-sign"></i>
-               <h1>Select a charity</h1>
-            </div>
-            <div class="about-process">
-               <i class="fa fa-dollar-sign"></i>
-               <h1><i class="fa fa-dollar-sign"></i>Choose an amount</h1>
-            </div>
-            <div class="about-process">
-               <i class="fa fa-dollar-sign"></i>
-               <h1>We'll email you when the game is over.</h1>
-            </div>
-            <div class="about-process">
-               <h1><i class="fa fa-child"></i>We'll celebrate the victory and the donation!<i class="fa fa-child"> </i></h1>
-            </div>
-            <hr>
             <div class="preamble text-center col-lg-10 col-lg-offset-1">
                <h1>About Betting on Charity</h1>
                <p id="about-p">We are a group of dedicated developers that wanted to create an application for the good of others!  People donate all the time, why not let them have some fun, betting on the sports teams they love?! And do good for others!? Everyone wins!</p>
@@ -127,20 +122,32 @@
          </div>
          <!-- End Container -->
       </div>
+      <section class="contact-form">
+        <div class="#contact form">
+          <form action="">
+            <fieldset>
+              <legend>Contact us:</legend>
+              <label for="full-name">Full Name</label>
+              <input id="full-name" type="text" placeholder="Enter your Name" name="full-name">
+              <label for="email-address">Email</label>
+              <input id="email-address" type="email" placeholder="Enter your email" name="email-address">
+              <label for="experience">Message</label>
+              <textarea name="experience" id="experience" placeholder="What is your past experience?"></textarea>
+              <label for="newsletter" class="c-label">I want to receive email updates.<input type="checkbox" id="newsletter"></label>
+              <button type="submit">Submit Application</button>
+            </fieldset>
+          </form>
+      </section>
+          <div> -->
       <!-- end #main-wrapper -->
-      <!-- Scripts -->
-      <script type="text/javascript" src="/scripts/js/jquery.min.js"></script>
-      <script type="text/javascript" src="/scripts/js/scripts.js"></script>
-      <script type="text/javascript" src="/scripts/js/owl.carousel.min.js"></script>
-      <script type="text/javascript" src="/scripts/js/jquery.ba-outside-events.min.js"></script>
-      <script type="text/javascript" src="/scripts/js/tab.js"></script>
-      <script type="text/javascript" src='/scripts/js/bootstrap-datepicker.js'></script>
-      <script type="text/javascript" src="/scripts/js/jquery.timelinr-0.9.54.js"></script>
+
       <!-- <script type="text/javascript" src="/scripts/twitter/jquery.tweet.min.js"></script> -->
       <!-- <script type="text/javascript" src="/scripts/apis.google.com/js/platform.js">
          {lang: 'pl'}
          </script> -->
-      <script type="text/javascript">
+
+         <!-- ~~~~~~Not sure what this is doing? ~~~~~~ -->
+      <!-- <script type="text/javascript">
          (function(d, s, id) {
              var js, fjs = d.getElementsByTagName(s)[0];
              if (d.getElementById(id)) return;
@@ -165,8 +172,25 @@
              return t;
          }
          (document, "script", "twitter-wjs"));
-      </script>
+      </script> -->
       <!-- End Scripts -->
-      </div>
+  </div>
+    <footer>
+      <section ="container-footer">
+          <p>&copy; 2018 - Bet On Charity</p>
+            <div class="social">
+              <a href="#" class="face"><span><i class="fa fa-github"></i></span></a>
+              <a href="#" class="linked"><span><i class="fa fa-linkedin"></i></span></a>
+            </div>
+          </section>
+        </footer>
    </body>
+   <!-- Scripts -->
+   <script type="text/javascript" src="/scripts/js/jquery.min.js"></script>
+   <script type="text/javascript" src="/scripts/js/scripts.js"></script>
+   <script type="text/javascript" src="/scripts/js/owl.carousel.min.js"></script>
+   <script type="text/javascript" src="/scripts/js/jquery.ba-outside-events.min.js"></script>
+   <script type="text/javascript" src="/scripts/js/tab.js"></script>
+   <script type="text/javascript" src='/scripts/js/bootstrap-datepicker.js'></script>
+   <script type="text/javascript" src="/scripts/js/jquery.timelinr-0.9.54.js"></script>
 </html>

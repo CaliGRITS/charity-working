@@ -76,8 +76,9 @@ input:valid+span:after {
   margin: 20px;
 }
 
-.container {
 
+
+/* .container {
   margin: auto;
 }
 .signup-container{
@@ -102,36 +103,77 @@ input:valid+span:after {
 
 #games-list {
   margin-top: 140px;
+} */
+
+////contact form///////
+
+.contact-form {
+  display: flex;
+  background-color: grey;
+  color: black;
+	width: 60%;
+	margin: auto;
+	padding: 10px;
+
+}
+.legend {
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+.fieldset {
+	border: none;
+	border-bottom: 1.5px solid grey;
+	width: ;
+
 }
 
+fieldset *{
+	display: block;
+	width: 100%;
+	margin: 3px;
+	padding: 5px;
 
-/* Nav1 */
 
-            #nav1 ul{
-                list-style-type: none;
-            }
-            #nav1 ul li{
-                display: inline-block;
-                background: linear-gradient(#E1E1E1,#CECECE,#696969);
-                padding: 10px 0px;
-                box-shadow: 0px 4px 3px #000000;
-            }
-            #nav1 ul li:first-child{
-                border-radius: 10px 0 0 10px;
-            }
-            #nav1 ul li:last-child{
-                border-radius: 0 10px 10px 0;
-            }
-            #nav1 ul li a{
-                color: #000000;
-                text-decoration: none;
-                font-size: 20px;
-                padding: 7px 25px 10px 25px;
-                transition: all 0.1s ease;
-            }
-            #nav1 ul li a:hover{
-                color: #ffffff;
-                text-decoration: none;
-                border-radius: 25px 25px 0 0 ;
-                background: #000000;
-            }
+}
+input[type="text"], input[type="email"]{
+	border-radius: 4px;
+	font-size: 1em;
+	width: 100%;
+
+}
+
+input[type="text-area"]
+{
+	width: 100%;
+}
+
+.radio-wrapper *{
+	display: inline;
+
+}
+button {
+	display: inline;
+	background-color: gold;
+	color: white;
+	padding: 3px;
+	margin: auto;
+}
+////footer/////
+
+.container footer{
+  display: flex;
+  width: 70%;
+  height: 40px;
+  background-color: #888;
+  align-items: center;
+}
+
+p {
+  padding-left: 10%;
+  color: black;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  @media (max-width: 600px) {
+  text-align: left;
+  padding: 0;
+}

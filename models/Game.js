@@ -5,7 +5,8 @@ var GameSchema = new Schema({
   user: String,
   email: String,
   gameAwayTeam: String,
-  gameHomeTeam: String
+  gameHomeTeam: String,
+  closed: {type: Boolean, default:false}
 });
 
 var Game = mongoose.model("Game", GameSchema);

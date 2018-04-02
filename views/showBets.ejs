@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Show Bets</title>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+<button><a href="/">Home</a></button>
+<button><a href="/showGames">Games</a></button>
+<h1>Hey <%=username%>! Thanks for helping support charities!</h1>
+<h2>You've bet on the following games:</h2>
+<table>
+<tr>
+  <th>Team</th>
+  <th>Charity</th>
+  <th>Amount</th>
+</tr>
+
+<% for(bet of bets) { %>
+  <tr>
+    <td><%= bet.team %></td>
+    <td><%= bet.charity %></td>
+    <td><%= bet.won %></td>
+    <td>
+      <input type="text" name="" placeholder="<%= bet.amount %>">
+
+    </td>
+    <td><a class="delete" href="javascript:void(0);" data-id="<%= bet.id %>">Delete Bet</a></td>
+  </tr>
+<% } %>
+</table>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+        $('td a.delete').click(function(){
+          var id = $(this).attr('data-id');
+          $.ajax({
+            url: '/bets/' + id,
+            type: 'DELETE',
+            success: function(){
+              alert('Bet was deleted');
+              window.location.href = '/showbets'
+            }
+          })
+        })
+
+});
+</script>
+</body>

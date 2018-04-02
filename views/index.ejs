@@ -6,51 +6,44 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>Betting on Charity</title>
       <!-- Stylesheets -->
-      <link rel="stylesheet" href="/styles/style.css">
-      <link rel="stylesheet" href="/styles/owl.carousel.css">
-      <link rel="stylesheet" href="/styles/style2.css">
+      <link rel="stylesheet" href="./styles/style.css">
+      <link rel="stylesheet" href="./styles/owl.carousel.css">
+      <link rel="stylesheet" href="./styles/style2.css">
       <!-- Google Fonts -->
       <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
       <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
       <script src="scripts/js/min/media.match.min.js"></script>
    </head>
    <body>
-      <div id="main-wrapper">
-         <!-- Start Header -->
-         <header id="header" class="fourth-version">
-            <div class="container">
-            </div>
-            <div class="header-navbar col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
-               <nav class="navigation">
-                  <ul class="list-inline text-center custom-list">
-                     <a href="index.html" id="logo-index"><img src="images/header-banner.png" alt=""></a>
-                     <!-- <li><a href="#">Home</a></li> -->
-                     <li><a href="#about">About</a></li>
-                     <li><a href="#schedule">Schedule</a></li>
-                     <li><a href="#footer">Contact</a></li>
-                     <% if(!user) { %>
-                     <a href="/signup">Log in/Sign up</a>
-                     <% } else { %>
-                     <li><a href="/showGames">Games</a></li>
-                     <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
-                     <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
-                     <div>
-                        <div style="display: none;">Welcome, <%= user.username %>!</div>
-                        <div>Welcome, <%= user.firstname %>!</div>
-                        <a href="/logout">Log out</a>
-                        <% } %>
-                     </div>
-                     <hr>
-                     <!-- <a href="/signup"><span>Sign up/Log in</span></a> -->
-                  </ul>
-               </nav>
-               <button class="navbar-toggle">
-               <i class="fa fa-list"></i>
-               </button>
-            </div>
-      </div>
-      </header>
-      <!-- End Header -->
+     <div id="main-wrapper">
+        <header id="header" class="fourth-version">
+          <a href="/showGames"><img src="images/header-banner.png" alt=""></a>
+           <div class="container"></div>
+                 <ul class="list-inline text-center custom-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="/showbets">My Bets</a></li>
+                    <% if(!user) { %>
+                    <a href="/signup">Log in/Sign up</a>
+                    <% } else { %>
+                    <li><a href="/showGames">Games</a></li>
+                    <li><div><a href="/logout">Log out</a>
+                       <% if(user && user.admin) { %>
+                           <a href="/admin/showGames">Admin Portal</a>
+                       <% } %>
+                   </div></li>
+                   <% } %>
+                    <hr>
+                    <!-- <a href="/signup"><span>Sign up/Log in</span></a> -->
+                 </ul>
+              </nav>
+              <button class="navbar-toggle">
+              <i class="fa fa-list"></i>
+              </button>
+           </div>
+     </div>
+</header>
+  <a name="top"></a>
       <!-- Start Intro -->
       <div class="intro">
          <div id="home-slider" class="owl-carousel owl-theme">
@@ -78,7 +71,7 @@
                </div>
             </div>
             <div class="item">
-               <img src="images/slider/bg4.jpg" alt="">
+               <img src="images/slider/bg5.jpg" alt="">
                <div class="slide-content extra col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 text-center">
                   <h1>Play, Donate, and Have some fun!</h1>
                   <br>
@@ -92,31 +85,24 @@
          </div>
       </div>
       <!-- End Intro -->
+      <div class="call-outs-container">
+        <div class="call-out">
+          <h2>1.</h2>
+          <h4>Pick the team you think will win.</h4>
+        </div>
+
+        <div class="call-out">
+          <h2>2.</h2>
+          <h4>Pick the charity that you want to donate to.</h4>
+        </div>
+
+        <div class="call-out">
+          <h2>3.</h2>
+          <h4>Place your bet, pay for it and let's see your charity win!</h4>
+        </div>
+      </div>
       <!-- Start About -->
       <div id="about" class="about">
-         <!-- Start Container -->
-         <div class="container">
-            <!-- Start About -->
-            <div class="about-process">
-               <i class="fa fa-basketball-ball"></i>
-               <h1>Pick a team</h1>
-            </div>
-            <div class="about-process">
-               <i class="fa fa-dollar-sign"></i>
-               <h1>Select a charity</h1>
-            </div>
-            <div class="about-process">
-               <i class="fa fa-dollar-sign"></i>
-               <h1><i class="fa fa-dollar-sign"></i>Choose an amount</h1>
-            </div>
-            <div class="about-process">
-               <i class="fa fa-dollar-sign"></i>
-               <h1>We'll email you when the game is over.</h1>
-            </div>
-            <div class="about-process">
-               <h1><i class="fa fa-child"></i>We'll celebrate the victory and the donation!<i class="fa fa-child"> </i></h1>
-            </div>
-            <hr>
             <div class="preamble text-center col-lg-10 col-lg-offset-1">
                <h1>About Betting on Charity</h1>
                <p id="about-p">We are a group of dedicated developers that wanted to create an application for the good of others!  People donate all the time, why not let them have some fun, betting on the sports teams they love?! And do good for others!? Everyone wins!</p>
@@ -125,20 +111,20 @@
          </div>
          <!-- End Container -->
       </div>
+
+
+      <!--content here-->
+      <a href="#top"><button>Back to top</button></a>
+          <div>
       <!-- end #main-wrapper -->
-      <!-- Scripts -->
-      <script type="text/javascript" src="/scripts/js/jquery.min.js"></script>
-      <script type="text/javascript" src="/scripts/js/scripts.js"></script>
-      <script type="text/javascript" src="/scripts/js/owl.carousel.min.js"></script>
-      <script type="text/javascript" src="/scripts/js/jquery.ba-outside-events.min.js"></script>
-      <script type="text/javascript" src="/scripts/js/tab.js"></script>
-      <script type="text/javascript" src='/scripts/js/bootstrap-datepicker.js'></script>
-      <script type="text/javascript" src="/scripts/js/jquery.timelinr-0.9.54.js"></script>
+
       <!-- <script type="text/javascript" src="/scripts/twitter/jquery.tweet.min.js"></script> -->
       <!-- <script type="text/javascript" src="/scripts/apis.google.com/js/platform.js">
          {lang: 'pl'}
          </script> -->
-      <script type="text/javascript">
+
+         <!-- ~~~~~~Not sure what this is doing? ~~~~~~ -->
+      <!-- <script type="text/javascript">
          (function(d, s, id) {
              var js, fjs = d.getElementsByTagName(s)[0];
              if (d.getElementById(id)) return;
@@ -163,8 +149,17 @@
              return t;
          }
          (document, "script", "twitter-wjs"));
-      </script>
+      </script> -->
       <!-- End Scripts -->
-      </div>
+  </div>
+    
    </body>
+   <!-- Scripts -->
+   <script type="text/javascript" src="/scripts/js/jquery.min.js"></script>
+   <script type="text/javascript" src="/scripts/js/scripts.js"></script>
+   <script type="text/javascript" src="/scripts/js/owl.carousel.min.js"></script>
+   <script type="text/javascript" src="/scripts/js/jquery.ba-outside-events.min.js"></script>
+   <script type="text/javascript" src="/scripts/js/tab.js"></script>
+   <script type="text/javascript" src='/scripts/js/bootstrap-datepicker.js'></script>
+   <script type="text/javascript" src="/scripts/js/jquery.timelinr-0.9.54.js"></script>
 </html>

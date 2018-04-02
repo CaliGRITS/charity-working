@@ -1,4 +1,47 @@
+#main-wrapper {
+  display: flex;
+  max-width: inherit;
+}
 
+.nav2{
+  min-width:inherit;
+}
+.nav2 ul{
+list-style-type: none;
+}
+.nav2 ul li{
+  display: inline-block;
+  background: linear-gradient(#C3C3C3,#000000);
+  padding: 10px;
+  box-shadow: 0px 4px 3px #C3C3C3;
+}
+.nav2 ul li:first-child{
+  border-radius: 5px 0 0 5px;
+}
+.nav2 ul li:last-child{
+  border-radius: 0 5px 5px 0;
+}
+.nav2 ul li a{
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 7px 15px;
+  transition: all 0.1s ease;
+}
+.nav2 ul li a:hover{
+  color: #000000;
+  text-decoration: none;
+  border-radius: 20px;
+  background: #ffffff;
+}
+.background-image {
+  full-width: 100%;
+}
+/* .iframe {
+  width: 305px;
+  height: 405px;
+  padding-right: 300px;
+} */
 .rotated {
   transform: rotate(-45deg); /* Equal to rotateZ(45deg) */
   background-color: #777;
@@ -38,13 +81,15 @@ select {
     background: slategray;
     color: white;
 }
+.verticalLine {
+  color: black; 2px;
+}
 
 .versus h1 {
   /* margin: 0; */
 }
 
-input,
-select {
+input, select {
   width: 7em;
 }
 .submit {
@@ -71,30 +116,76 @@ input:valid+span:after {
 
 .row {
   margin: 20px;
+  border-box: black;
 }
 
-.container {
 
-  margin: auto;
+/* third example */
+.call-outs-container {
+  max-width: 1400px;
+  margin: 40px auto 0 auto;
 }
-.signup-container{
+
+.call-out {
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 20px;
+  flex-basis: 30%;
+  background-color: grey;
+}
+
+@media (min-width: 900px) {
+  .call-outs-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.call-out:nth-child(1) {background-color: #grey;}
+.call-out:nth-child(2) {background-color: #grey;}
+.call-out:nth-child(3) {background-color: #grey;}
+
+/* .container {
+  display: flex;
+  margin: 60px:
+  align-items: center;
+} */
+
+.signup-container {
   display: flex;
   justify-content: space-evenly;
+  margin: 40px;
+  align-items: center;
 }
 
 .about {
-  height: 100vh;
-  padding-top: 63px;
+  /* height: 100vh; */
+  padding-top: 20px;
+  align-content: center;
 }
 
 #about-p {
   font-size: 2em;
 }
 
-.preamble {
+/* .preamble {
   margin: 8em 2em;
-}
+} */
 
 #games-list {
   margin-top: 140px;
+} */
+
+
+////footer/////
+
+.container footer {
+  display: flex;
+  height: 40px;
+  background-color: #888;
+  /* align-items: center; */
+}
+.footer {
+  display: inline-flex;
+  background-color: grey;
+
 }

@@ -6,9 +6,12 @@ var BetSchema = new Schema({
   charity: String,
   amount: Number,
   gameId: String,
-  username: String
+  username: String,
+  won: {type: Boolean, default:false},
+  closed: {type: Boolean, default:false}
 });
 
-var Bet = mongoose.model("Bet", BetSchema);
+
+var Bet = mongoose.model("Bet", BetSchema)
 
 module.exports = Bet;

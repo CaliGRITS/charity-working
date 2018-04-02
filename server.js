@@ -2,7 +2,7 @@
 //  SETUP and CONFIGURATION
 /////////////////////////////
 //require express in our app
-var express = require("express"),
+  var express = require("express"),
   app = express(),
   bodyParser = require("body-parser"),
   methodOverride = require("method-override"),
@@ -12,7 +12,7 @@ var express = require("express"),
   LocalStrategy = require("passport-local").Strategy,
   request = require("request");
 // connect to db models
-var db = require("./models"),
+ var db = require("./models"),
   Game = db.Game,
   User = db.User,
   Bet = db.Bet;
@@ -39,7 +39,7 @@ app.use(session(  {
 app.use(passport.initialize());
 app.use(passport.session());
 
-// passport config
+// passport config //
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -75,9 +75,13 @@ app.get("/", function(req, res) {
   });;
 });
 
+//////// Show Games /////////
+
 app.get("/showGames", function(req, res) {
   // res.sendFile('views/index', { root : __dirname});
   // res.render("index", { games: allGames});
+    if (!req.user)
+    res.redirect("/login")
   Game.find(function(err, allGames) {
     if (err) { res.status(500).json({ error: err.message });}
 
@@ -90,17 +94,17 @@ app.get("/showGames", function(req, res) {
           if(bet.amount){
             totalBetsAmounts += bet.amount
           }
-
         })
         // foundBets.map(bet => totalBetsAmounts += bet.amount);
         console.log(totalBetsAmounts);
-
         res.render("showGames", { games: allGames, user: req.user, bets: foundBets, totalBetsAmounts: totalBetsAmounts});
       })
 
   });;
 });
+
 //create new user bet and redirect to confirmation page
+
 app.post("/", function(req, res) {
   // res.sendFile('views/index', { root : __dirname});
   // res.render("index", { games: allGames});
@@ -117,6 +121,8 @@ app.post("/", function(req, res) {
   // saveBet(newBet, res);
 });
 
+//////// Confirm Bets, Save ////////
+
 app.post("/confirmBet", function(req, res) {
   // function saveBet(newBet, res){
   console.log(req.body);
@@ -124,9 +130,10 @@ app.post("/confirmBet", function(req, res) {
     team: req.body.team,
     charity: req.body.charity,
     amount: req.body.amount,
-    username: req.body.username,
+    username: req.user.username,
     gameId: req.body.gameId
   });
+
 
   // Bet.findOne(req.body.id, function(err, bet){
   //   console.log(bet);
@@ -143,15 +150,7 @@ app.post("/confirmBet", function(req, res) {
   });
 });
 
-// app.get("/games", function(req, res) {
-//   Game.findById(req.params.id, function(err, foundGame) {
-//     if (err) {
-//       res.status(500).json({ error: err.message });
-//     } else {
-//       res.render("games/show", { game: foundGame });
-//     }
-//   });
-// });
+////////// Find Games/Show ////////
 
 app.get("/games/:id", function(req, res) {
   Game.findById(req.params.id, function(err, foundGame) {
@@ -162,34 +161,57 @@ app.get("/games/:id", function(req, res) {
     }
   });
 });
-//
-// app.get("/allGames", function(req, res) {
-//   var params = {
-//            format: JSON,
-//            date: "2018-FEB-27"
-//        };
-// $.ajax({
-//     url: "https://api.fantasydata.net/v3/cbb/scores/JSON/TeamGameStatsByDate/2018-FEB-27",
-//     beforeSend: function(xhrObj){
-//         // Request headers
-//         xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","e415ccd5602b4e06870ba5c497510cbd");
-//     },
-//     type: "GET",
-//     // Request body
-//     data: "{body}",
-// })
-// .done(function(data) {
-//   console.log(data);
-//     alert("success");
-// })
-// .fail(function() {
-//     alert("error");
-// });
-// });
 
+
+// ~~~~~~~ User Delete Bets ~~~~~~~~ //
+
+app.delete("/bets/:id", function(req, res) {
+  console.log(req.params.id)
+    Bet.findByIdAndRemove(req.params.id, function(err, bet){
+    if(err) return res.sendStatus(500);
+    res.sendStatus(200);
+  })
+});
+
+// ~~~~~~ User Show Bets ~~~~~~~~ //
+
+app.get("/showbets", function(req, res) {
+    if (!req.user){
+      res.redirect("/login")
+    }
+    else {
+      var foundBet = Bet.find({username: req.user.username}, function(err, foundBet){
+        console.log(foundBet);
+        res.render("showBets", {username: req.user.username, bets: foundBet});
+      });
+    }
+});
+
+// ~~~~~~Admin show all games ~~~~~~~ //
+
+app.get("/admin/showGames", function (req, res) {
+    Game.find(function(err, allgames)
+     {res.render ('admin', {games: allgames, user: req.user})
+    })
+});
+
+// ~~~~~Admin notify bet winner~~~~~~ //
+
+app.post("/admin", function (req, res) {
+    Bet.find({gameId:req.body.game}, function(err, bets){
+    bets.forEach(function(index, bet){
+      if(bet.team == req.body.team) {
+        bet.won = true
+      }
+      bet.close = true
+      bet.save ();
+    })
+  })
+});
+
+// ~~~~~~API Call~~~~~ //
 
 app.get("/allGames", function(req, res) {
-
 
 const url =
   "https://api.fantasydata.net/v3/cbb/scores/JSON/Tournament/sim?key=e415ccd5602b4e06870ba5c497510cbd";
@@ -205,6 +227,7 @@ fetch(url)
     console.log(error);
   });
 
+// ~~~~~~~Return API data~~~~~~ //
 
   function createGamesFromData(json){
     json.Games.forEach(function (game){
@@ -223,18 +246,16 @@ fetch(url)
           return console.log("save error: " + err);
         }
         console.log("Game saved:", game);
-
       });
-
-    }) //end forEach
-  } //end createGamesFromData
+    })
+  }
 });
-//////////////////////
-//// Auth Routes ////
 
+/////////////////////////////////////
+//// Auth - Login/Signup Routes ////
 // show signup view
 app.get('/signup', function (req, res) {
- res.render('signup');
+ res.sendFile(__dirname+'/views/signup.html');
 });
 
 // Signing up new user, log them in
@@ -260,13 +281,16 @@ app.post('/signup', function (req, res) {
 
 // log in user
 app.get('/login', function (req, res) {
- res.render('login');
+  res.sendFile(__dirname+'/views/signup.html');
 });
+
+// app.get('/admin', function (req, res) {
+//   res.sendFile(__dirname+'/views/signup.html');
+// });
 
 app.post('/login', passport.authenticate('local'), function (req, res) {
   console.log(req.user);
-  //res.send('logged in!!!'); // sanity check
-  res.redirect("/showGames"); // preferred!
+  res.redirect("/showGames");
 });
 
 

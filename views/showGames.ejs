@@ -20,20 +20,24 @@
             </div>
             <div class="header-navbar col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
                <nav class="navigation">
-                  <ul class="list-inline text-center custom-list">
-                     <a href="index.html" id="logo-index"><img src="images/header-banner.png" alt=""></a>
-                     <li><a href="/">Home</a></li>
-                     <li><a href="#about">About</a></li>
-                     <li><a href="#games">Games</a></li>
-                     <li><a href="#schedule">Schedule</a></li>
-                     <li><a href="#footer">Contact</a></li>
-                     <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
-                     <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
-                     <div>
-                        <div>Welcome, <%= user.firstname %>!</div>
-                        <a href="/logout">Log out</a>
-                     </div>
-                  </ul>
+                 <ul class="list-inline text-center custom-list">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#about">About</a></li>
+                    <li><a href="/showbets">My Bets</a></li>
+                    <% if(!user) { %>
+                    <a href="/signup">Log in/Sign up</a>
+                    <% } else { %>
+                    <li><a href="/showGames">Games</a></li>
+                    <li><div><a href="/logout">Log out</a>
+                       <% if(user && user.admin) { %>
+                           <a href="/admin/showGames">Admin Portal</a>
+                       <% } %>
+                   </div></li>
+                   <% } %>
+                    <hr>
+                    <!-- <a href="/signup"><span>Sign up/Log in</span></a> -->
+                 </ul>
+
                </nav>
                <button class="navbar-toggle">
                <i class="fa fa-list"></i>
@@ -42,6 +46,7 @@
       </div>
       </header>
       <!-- list of games -->
+      <div id="background-image"><img src=""images/slider/bg2.jpg"></div>
       <ul class="list-group" id="games-list">
          <% for (let game of games) { %>
          <li class="list-group-item game" data-id="<%= game._id %>">

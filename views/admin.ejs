@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Betting on Charity</title>
+      <!-- Stylesheets -->
+      <link rel="stylesheet" href="/styles/style.css">
+      <!-- Google Fonts -->
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+      <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+      <script src="scripts/js/min/media.match.min.js"></script>
+   </head>
+   <body>
+      <div id="main-wrapper">
+         <!-- Start Header -->
+         <header id="header" class="fourth-version">
+            <div class="container">
+            </div>
+            <div class="header-navbar col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+               <nav class="navigation">
+                  <ul class="list-inline text-center custom-list">
+                     <a href="index.html" id="logo-index"><img src="images/header-banner.png" alt=""></a>
+                     <li><a href="/">Home</a></li>
+                     <li><a href="#about">About</a></li>
+                     <li><a href="#games">Games</a></li>
+                     <li><a href="#schedule">Schedule</a></li>
+                     <li><a href="#footer">Contact</a></li>
+                     <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
+                     <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+                     <li>><% if (!!user){ %></li>
+                    <li>Welcome, <%= user.firstname %>!</li>
+                        <li>><<a href="/logout">Log out</a></li>
+                          <li><% if(user && user.admin) { %></li>
+                            <li><a href="/admin"><button></button>Admin Portal</a>button></a>
+                        <% } %></li>
+                     <%}%>
+                  </ul>
+               </nav>
+               <button class="navbar-toggle">
+               <i class="fa fa-list"></i>
+               </button>
+            </div>
+      </div>
+  </header>
+  <ul class="list-group" id="games-list">
+     <% for (let game of games) { %>
+     <li class="list-group-item game" data-id="<%= game._id %>">
+        <div class="versus">
+           <img src="/images/<%= game.gameAwayTeam %>-<%= game.gameHomeTeam %>.jpg">
+        </div>
+        <div class="amount-charity">
+           <form method="POST" action="/admin">
+              <!-- <span class="currencyinput">$</span><input type="number" name="amount" value="1" min="1" required placeholder"bet amount">
+              <span class="validity"></span>
+              <select name="charity" class="charity_category">
+                 <option value="Homeless">Homeless</option>
+                 <option value="Animals">Animals</option>
+                 <option value="Prevention">Prevention</option>
+              </select> --> -->
+              <select name="team" class="team-selector">
+                 <!-- //https://stackoverflow.com/questions/8605516/default-select-option-as-blank -->
+                 <option disabled selected value> -- select a team -- </option>
+                 <option value="<%= game.gameAwayTeam %>"><%= game.gameAwayTeam %></option>
+                 <option value="<%= game.gameHomeTeam %>"><%= game.gameHomeTeam %></option>
+              </select>
+              <div>
+                 <input type="hidden" name="gameId" value=<%= game._id %>>
+                 <input class="submit" type='submit'>
+           </form>
+           </div>
+     </li>
+     <% } %>
+   </ul>
+</body>
+</html>

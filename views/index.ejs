@@ -6,53 +6,44 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <title>Betting on Charity</title>
       <!-- Stylesheets -->
-      <link rel="stylesheet" href="/styles/style.css">
-      <link rel="stylesheet" href="/styles/owl.carousel.css">
-      <link rel="stylesheet" href="/styles/style2.css">
+      <link rel="stylesheet" href="./styles/style.css">
+      <link rel="stylesheet" href="./styles/owl.carousel.css">
+      <link rel="stylesheet" href="./styles/style2.css">
       <!-- Google Fonts -->
       <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
       <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
       <script src="scripts/js/min/media.match.min.js"></script>
    </head>
    <body>
-      <div id="main-wrapper">
-         <!-- Start Header -->
-         <header id="header" class="fourth-version">
-            <div class="container">
-            </div>
-            <!-- <div class="header-navbar col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix"> -->
-               <nav class="navigation">
-                  <ul class="list-inline text-center custom-list">
-                     <a href="/showGames"><img src="images/header-banner.png" alt=""></a>
-                     <!-- <li><a href="#">Home</a></li> -->
-                     <li><a href="#about">About</a></li>
-                     <li><a href="/showbets">Show Bets</a></li>
-                     <li><a href="#footer">Contact</a></li>
-                     <% if(!user) { %>
-                     <a href="/signup">Log in/Sign up</a>
-                     <% } else { %>
-                     <li><a href="/showGames">Games</a></li>
-                     <!-- <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
-                     <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li> -->
-                     <div>
-                        <div>Welcome, <%= user.firstname %>!</div>
-                        <a href="/logout">Log out</a>
-                        <% if(user && user.admin) { %>
-                            <a href="/admin">Admin Portal</a>
-                        <% } %>
-                    </div>
-                    <% } %>
-                     <hr>
-                     <!-- <a href="/signup"><span>Sign up/Log in</span></a> -->
-                  </ul>
-               </nav>
-               <button class="navbar-toggle">
-               <i class="fa fa-list"></i>
-               </button>
-            </div>
-      </div>
-      </header>
-      <!-- End Header -->
+     <div id="main-wrapper">
+        <header id="header" class="fourth-version">
+          <a href="/showGames"><img src="images/header-banner.png" alt=""></a>
+           <div class="container"></div>
+                 <ul class="list-inline text-center custom-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="/showbets">My Bets</a></li>
+                    <% if(!user) { %>
+                    <a href="/signup">Log in/Sign up</a>
+                    <% } else { %>
+                    <li><a href="/showGames">Games</a></li>
+                    <li><div><a href="/logout">Log out</a>
+                       <% if(user && user.admin) { %>
+                           <a href="/admin/showGames">Admin Portal</a>
+                       <% } %>
+                   </div></li>
+                   <% } %>
+                    <hr>
+                    <!-- <a href="/signup"><span>Sign up/Log in</span></a> -->
+                 </ul>
+              </nav>
+              <button class="navbar-toggle">
+              <i class="fa fa-list"></i>
+              </button>
+           </div>
+     </div>
+</header>
+  <a name="top"></a>
       <!-- Start Intro -->
       <div class="intro">
          <div id="home-slider" class="owl-carousel owl-theme">
@@ -80,7 +71,7 @@
                </div>
             </div>
             <div class="item">
-               <img src="images/slider/bg4.jpg" alt="">
+               <img src="images/slider/bg5.jpg" alt="">
                <div class="slide-content extra col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 text-center">
                   <h1>Play, Donate, and Have some fun!</h1>
                   <br>
@@ -110,8 +101,6 @@
           <h4>Place your bet, pay for it and let's see your charity win!</h4>
         </div>
       </div>
-
-<hr>
       <!-- Start About -->
       <div id="about" class="about">
             <div class="preamble text-center col-lg-10 col-lg-offset-1">
@@ -122,23 +111,11 @@
          </div>
          <!-- End Container -->
       </div>
-      <section class="contact-form">
-        <div class="#contact form">
-          <form action="">
-            <fieldset>
-              <legend>Contact us:</legend>
-              <label for="full-name">Full Name</label>
-              <input id="full-name" type="text" placeholder="Enter your Name" name="full-name">
-              <label for="email-address">Email</label>
-              <input id="email-address" type="email" placeholder="Enter your email" name="email-address">
-              <label for="experience">Message</label>
-              <textarea name="experience" id="experience" placeholder="What is your past experience?"></textarea>
-              <label for="newsletter" class="c-label">I want to receive email updates.<input type="checkbox" id="newsletter"></label>
-              <button type="submit">Submit Application</button>
-            </fieldset>
-          </form>
-      </section>
-          <div> -->
+
+
+      <!--content here-->
+      <a href="#top"><button>Back to top</button></a>
+          <div>
       <!-- end #main-wrapper -->
 
       <!-- <script type="text/javascript" src="/scripts/twitter/jquery.tweet.min.js"></script> -->
@@ -175,15 +152,7 @@
       </script> -->
       <!-- End Scripts -->
   </div>
-    <footer>
-      <section ="container-footer">
-          <p>&copy; 2018 - Bet On Charity</p>
-            <div class="social">
-              <a href="#" class="face"><span><i class="fa fa-github"></i></span></a>
-              <a href="#" class="linked"><span><i class="fa fa-linkedin"></i></span></a>
-            </div>
-          </section>
-        </footer>
+    
    </body>
    <!-- Scripts -->
    <script type="text/javascript" src="/scripts/js/jquery.min.js"></script>

@@ -4261,7 +4261,7 @@ div.container{
   background: #2a3444;
 }
 #header.fourth-version .header-navbar nav > ul > li {
-  padding: 0 20px;
+  padding: 0 10px;
   margin: 0;
   border-right: 1px dashed rgba(255, 255, 255, 0.5);
 }
@@ -4273,12 +4273,12 @@ div.container{
 }
 @media (max-width: 1200px) {
   #header.fourth-version .header-navbar nav > ul > li {
-    padding: 0 30px;
+    padding: 0 10px;
   }
 }
 @media (max-width: 992px) {
   #header.fourth-version .header-navbar {
-    padding: 15px 0;
+    padding: 10px 0;
     height: auto;
   }
   #header.fourth-version .header-navbar nav {
@@ -4286,7 +4286,7 @@ div.container{
   }
   #header.fourth-version .header-navbar nav ul > li {
     padding-top: 10px;
-    padding-bottom: 13px;
+
   }
   #header.fourth-version .header-navbar nav ul > li.has-submenu ul {
     top: 13px;
